@@ -1,0 +1,29 @@
+<form>
+<label for="">Tyepe here</label>
+<input type="text" >
+<input placeholder="just binding" type="text" (change)="onlog()">
+<input placeholder="just binding with event add" type="text" (change)="log($event)">
+<button (click)="onSave()">tick it</button><br><br><br><br>
+</form>
+<form>
+    <label for="">With ngModel</label>
+    <input placeholder="return Ngmodel object with lots of property"  type="text" ngModel #pass="ngModel" name="FirstName" (change)="ghar(pass)">
+    <br><br>
+    <input placeholder="return Ngmodel object with lots of property"  type="text" ngModel #pass="ngModel" name="FirstName" (change)="ghar1(pass)">
+    
+</form>
+<form #f="ngForm" (ngSubmit)="submit(f)" >
+    <label>NgForm</label>
+    <input placeholder="return Ngmodel object with lots of property"  type="text" ngModel #pass="ngModel" name="FirstName" (change)="ghar(pass)">
+    <br><br>
+    <input>
+</form>
+
+<form #regForm="ngForm" (ngSubmit)="RegisterOn1(regForm)">
+    <input type="text" name="firstname"  ngModel>
+    <input type="text" name="lastname"  ngModel>
+    <input type="text" name="Email" required ngModel #email="ngModel">
+    <span *ngIf="email.touched && !email.valid">Pls enter email</span>
+    <button type="submit" [disabled]="!regForm.valid">On Register</button>
+    </form>
+    <br><br><br>

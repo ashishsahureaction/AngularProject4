@@ -1,0 +1,189 @@
+<!-- <h1>hi</h1> -->
+<p>{{mesaage}}</p>
+<h1 [ngClass]="'one'">{{mesaage}}</h1>
+<h2 [ngClass]="'two'">{{mesaage}}</h2>
+
+<div [ngSwitch]="name">
+        <div *ngSwitchCase="'Ram'">Hello Ram</div>
+        <div *ngSwitchCase="'Sita'">Hello Sita</div>
+        <div *ngSwitchCase="'Mohan'">Hello Mohan</div>
+        <div *ngSwitchCase="'Ram'">Hello Ram</div>
+        <div *ngSwitchCase="'Shyam'">Hello Shyam</div>
+        <div *ngSwitchDefault>No data Match</div>
+</div>
+<div>
+    Enter your Name:<input type="text" #txtname (keyup)="0"/>
+    <div [ngSwitch]="txtname.value">
+        <div *ngSwitchCase="'Ram'">Hello Ram</div>
+        <div *ngSwitchCase="'Sita'">Hello Sita</div>
+        <div *ngSwitchCase="'Mohan'">Hello Mohan</div>
+        <div *ngSwitchCase="'Ram'">Hello Ram</div>
+        <div *ngSwitchCase="'Shyam'">Hello Shyam</div>
+        <div *ngSwitchDefault>No data Match</div>
+</div> 
+</div>
+<h2>*ngfor</h2>
+<ul>
+    <li *ngFor="let kuchbhi of Students">{{kuchbhi.name}}</li>
+    <li *ngFor="let kuchbhi of Students ; let i=index">{{i+1}}-{{kuchbhi.name}} with index no</li>
+    <li *ngFor="let kuchbhi of Students; let f=first;let l=last; let ev=even; let od=odd;">{{kuchbhi.name}}/
+        {{f}},{{l}}-{{ev}}/{{od}} for ture false value will get first true and otthe false in f case</li>
+
+<li *ngFor="let keyValuePair of Students | keyvalue"></li>  
+    
+</ul>
+
+
+
+<ul *ngFor="let group of Countrydeatils">
+<li>{{group.country}}</li>
+
+<ul>
+   <li *ngfor="let person of group.people">{{person.name}}</li>
+</ul>
+
+</ul>
+
+<h2>{{text}}</h2>
+<h2>{{a+b}}</h2>
+<span [innerHTML]="text"></span>
+<span [innerHTML]="a"></span>
+<img [src]="'https://images.pexels.com/photos/14881780/pexels-photo-14881780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'" [height]="600" [width]="400">
+<input (keyup.enter)="onKeyUp()"/>
+<button (click)="showdata()">Show</button>
+<button (click)="showdata1($event)">Event Binding</button>
+<button (click)="showdataone()">Show One</button>
+<h1>2 way data binding</h1>
+<br>
+<input [(ngModel)]='roja'>
+Enterefd your name:{{roja}}
+<br>
+<input [(ngModel)]='roja'>
+Enterefd your Last name:{{roja}}
+<h2 appInputFormat>Pipes with host listner decorator</h2>
+<p>The event will take place on {{ evendate | date:'medium' }}</p>
+<p>The {{ evendate | date }}</p>
+<p>take index number i.e 3 instead of put 2{{ dob | date }}</p>
+<p> {{ dob | date: 'dd/mm/yyyy' }}</p>
+<p> {{ salary | currency:"USD"}}</p>
+<p> {{ naam | slice:3}}</p>
+<p> {{ naam | slice:2:4}}</p>
+<p> {{ c| percent}}only</p><p>the  {{ c| percent:'2.4-8'}}</p>
+<p> {{ c| number}} the</p><p> {{ c| number:'2.4-8'}}</p>
+<p> {{ c| currency:'INR'}}</p><p> {{ c| currency:'INR':'code'}}</p>
+<p> {{ employess}} will only show object object</p>
+<p> {{ employess|json}}</p>
+<p> {{ employess|slice:1:2|json}}</p>
+<p> {{ Countrydeatils|json}}</p>
+<p> {{ Countrydeatils}}</p>
+<p> {{ employee|json}}</p> 
+<h4>use case of Custom Pipe</h4>
+<table border="1">
+    <tr *ngFor="let emp of employee">
+        <td>{{emp.name|mypipe:emp.gender}}</td>
+        <td>{{emp.salary}}</td>
+        <td>{{emp.gender}}</td>
+        <td>{{emp.code}}</td></tr></table><br><br>
+
+
+        
+        <h1>Routing</h1>
+        <h1>Routing Link Example</h1>
+      <a routerLink="student">STUDENT</a><br><br><br>
+      <a routerLink="studentdetails">Details</a>
+      <br><br><br>
+      <a [routerLink]="['/student']">STUDENT 1</a><br><br><br>
+      <a [routerLink]="['/studentdetails']">Details 1</a><br><br><br>
+      <a [routerLink]="['/error']">error</a><br><br><br>
+
+      <button (click)="mala()">Dynamic Routing</button>
+
+      <router-outlet></router-outlet>
+      <app-studentdetails><div>use of ng-content.div...if remove ng-content tag then it will not reflect
+        <h1>ng-contect select use case..h1 tag</h1>
+      </div></app-studentdetails>
+
+      
+    <button class="btn btn-primery">Bootstrap Button</button>
+   <h1>Template Driven Forms and (check reactive form in app2)</h1>  
+<form #regForm="ngForm" (ngSubmit)="RegisterOn(regForm)">
+<input type="text" name="firstname"  ngModel>
+<input type="text" name="lastname"  ngModel>
+<input type="text" name="Email" required ngModel #email="ngModel">
+<span *ngIf="email.touched && !email.valid">Pls enter email</span>
+<button type="submit" [disabled]="!regForm.valid">Register</button>
+</form>
+<br><br><br>
+
+
+<form #myForm="ngForm">
+    <label for="users">Select a user:</label>
+    <select id="users" name="users" ngModel required>
+      <option value="">Select a user</option>
+      <option *ngFor="let user of users" [ngValue]="user">{{ user.name }}</option>
+    </select>
+    <button type="submit" [disabled]="!myForm.valid">Submit</button>
+  </form>
+  <br><br><br>
+
+
+  <form #myForm1="ngForm">
+    <label for="users">Select a user:</label>
+    <select id="users" name="users" [(ngModel)]="selectedUser" required>
+      <option value="">Select a user</option>
+      <option *ngFor="let user of users" [ngValue]="user">{{ user.name }}</option>
+    </select>
+    <button type="submit" [disabled]="!myForm1.valid">Submit</button>
+  </form>
+  <br><br><br>
+<app-child></app-child>
+<app-template-form></app-template-form>
+
+<br><br><br>
+
+<h1>Template Driven Forms validation </h1>  
+<form #regForm="ngForm" (ngSubmit)="RegisterOn(regForm)"><br>
+<input type="text" name="firstname"  ngModel required=""><br>
+<input type="text" name="lastname"  ngModel required=""><br>
+<!-- <input type="text" name="Email" required ngModel #email="ngModel"><br>
+<span *ngIf="email.touched && !email.valid">Pls enter email</span> -->
+<button type="submit" [disabled]="!regForm.valid">Register</button>
+</form>
+<br><br><br>
+
+
+<form #myForm="ngForm">
+    <label>Name:</label>
+    <input type="text" name="name" ngModel  minlength="3">
+  
+    <label>Email:</label>
+    <input type="email" name="email" ngModel required>
+  
+    <button type="submit" [disabled]="!myForm.valid">Submit</button>
+  </form><br><br><br>
+
+  <h1><div [@myAnimation]="state" (click)="toggle()">Click me!</div></h1>
+  <h1 [@fade]>hit me for animantion</h1>
+
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Actions Buttons</mat-card-title>
+      <mat-card-subtitle>Start</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+  <br>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Actions Buttons</mat-card-title>
+      <mat-card-subtitle>End</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions align="end">
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
